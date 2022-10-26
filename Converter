@@ -1,0 +1,141 @@
+import java.text.NumberFormat;
+import java.util.Locale;
+
+public class Converter {
+    protected double money;
+    protected String country;
+
+    //construstor_1
+    public Converter(){
+        float money = 0;
+        String country = "Russia";
+    }
+
+    //construstor_2
+    public Converter(double money){
+        this.money = money;
+        String country = "Russia";
+    }
+
+    //construstor_3
+    public Converter(double money, String country){
+        this.money = money;
+        this.country = country;
+    }
+
+    //construstor_4
+    public Converter(String country){
+        float money = 0;
+        this.country = country;
+    }
+
+    public String getCountry(){
+        return country;
+    }
+
+    public double getMoney(){
+        return money;
+    }
+
+    public void setMoney(double money){
+        this.money = money;
+    }
+
+    public void setCountry(String country) {
+        this.country = country;
+    }
+
+    public Object convert(String newCountry){
+        Locale locFR = new Locale("fr");
+        Locale.setDefault(Locale.CHINA);
+        switch (newCountry){
+            case "France":
+                switch (country){
+                    case "France":
+                        NumberFormat numberFormat = NumberFormat.getCurrencyInstance(Locale.FRANCE);
+                        System.out.printf("Вы перевели евро в евро, ну ладно, это будет "+ numberFormat.format(money)+"\n");
+                        return null;
+                    case "Russia":
+                        numberFormat = NumberFormat.getCurrencyInstance(Locale.FRANCE);
+                        double feck =money*0.016539;
+                        System.out.printf("Вы перевели рубли в евро, это будет " + numberFormat.format(feck)+"\n");
+                        return null;
+                    case "USA" :
+                        feck = money * 0.99761;
+                        numberFormat = NumberFormat.getCurrencyInstance(Locale.FRANCE);
+                        System.out.printf("Вы перевели доллары в евро, это будет "+ numberFormat.format(feck)+"\n");
+                        return null;
+                    case "China":
+                        feck = money * 0.13875;
+                        numberFormat = NumberFormat.getCurrencyInstance(Locale.FRANCE);
+                        System.out.printf("Вы перевели юани в евро, это будет "+ numberFormat.format(feck)+"\n");
+                        return null;
+                }
+            case "Russia":
+                switch (country){
+                    case "France":
+                        double feck = money * 60.46;
+                        System.out.printf("Вы перевели евро в рубли, это будет "+ feck +" рублей"+"\n");
+                        return null;
+                    case "Russia":
+                        System.out.printf("Вы перевели рубли в рубли, ну ладно, это будет "+ money +" рублей"+"\n");
+                        return null;
+                    case "USA" :
+                        feck = money * 61.33;
+                        System.out.printf("Вы перевели доллары в рубли, это будет "+ feck +" рублей"+"\n");
+                        return null;
+                    case "China":
+                        feck = money * 8.32;
+                        System.out.printf("Вы перевели юани в рубли, это будет " + feck +" рублей"+"\n");
+                        return null;
+                }
+            case "USA":
+                switch (country){
+                    case "France":
+                        double feck = money * 0.99761;
+                        NumberFormat numberFormat = NumberFormat.getCurrencyInstance(Locale.US);
+                        System.out.printf("Вы перевели евро в доллары, это будет "+ numberFormat.format(feck)+"\n");
+                        return null;
+                    case "Russia":
+                        feck =money*0.016305;
+                        System.out.printf("Вы перевели рубли в доллары, это будет "+ feck +"рублей"+"\n");
+                        return null;
+                    case "USA" :
+                        numberFormat = NumberFormat.getCurrencyInstance(Locale.US);
+                        System.out.printf("Вы перевели доллары в доллары, ну ладно, это будет "+ numberFormat.format(money)+"\n");
+                        return null;
+                    case "China":
+                        feck = money * 0.13566;
+                        numberFormat = NumberFormat.getCurrencyInstance(Locale.US);
+                        System.out.printf("Вы перевели юани в доллары, это будет "+ numberFormat.format(feck)+"\n");
+                        return null;
+                }
+            case "China":
+                switch (country){
+                    case "France":
+                        double feck = money * 7.21;
+                        NumberFormat numberFormat = NumberFormat.getCurrencyInstance(Locale.CHINA);
+                        System.out.printf("Вы перевели евро в юани, это будет "+ numberFormat.format(feck)+"\n");
+                        return null;
+                    case "Russia":
+                        feck =money*0.12013;
+                        System.out.printf("Вы перевели рубли в юани, это будет "+feck +" рублей"+"\n");
+                        return null;
+                    case "USA" :
+                        feck = money * 7.37;
+                        numberFormat = NumberFormat.getCurrencyInstance(Locale.CHINA);
+                        System.out.printf("Вы перевели доллары в юани, это будет "+ numberFormat.format(feck)+"\n");
+                        return null;
+                    case "China":
+                        numberFormat = NumberFormat.getCurrencyInstance(Locale.CHINA);
+                        System.out.printf("Вы перевели юани в юани, это будет "+ numberFormat.format(money)+"\n");
+                        return null;
+                }
+        }
+        return null;
+    }
+    public String toString() {
+        return "Ваш баланс: "+ this.money+"\n" +"Ваш регион: "+ this.country;
+    }
+
+}
