@@ -1,0 +1,7 @@
+public class Main {
+    public static void main(String[] args) {
+        Converter acc1 = new Converter(1000, "China");
+        acc1.convert("Russia");
+        System.out.println(acc1);
+    }
+}
